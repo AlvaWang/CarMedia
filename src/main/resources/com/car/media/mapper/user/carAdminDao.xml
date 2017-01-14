@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.media.car.dao.user.carAdminDao">
+    <select id="getCarAdminCondition" resultType="CarAdmin">
+        SELECT
+        id as id,
+        admin_account as adminAccount,
+        admin_name as adminName,
+        admin_login_password as adminLoginPassword,
+        admin_write as adminWrite,
+        admin_real_name as adminRealName,
+        admin_email as adminEmail,
+        admin_address as adminAddress,
+        remark as remark,
+        create_time as createTime,
+        update_time as updateTime,
+        create_user as createUser,
+        update_user as updateUser,
+        status as status,
+        free as free
+        FROM car_admin
+        where status="1"
+        <if test="''!= adminAccount and adminAccount != null">
+            AND admin_account = #{adminAccpunt}
+        </if>
+        <if test="adminLoginPassword != '' and adminLoginPassword != null">
+            AND admin_login_password = #{adminLoginPassword}
+        </if>
+        <if test="'' != offset and offset != null and limit != '' and limit != null">
+            limit #{offset},#{limit}
+        </if>
+    </select>
+
+    <select id="getCarAdminByAccount" resultType="CarAdmin">
+        SELECT
+        id as id,
+        admin_account as adminAccount,
+        admin_name as adminName,
+        admin_login_password as adminLoginPassword,
+        admin_write as adminWrite,
+        admin_real_name as adminRealName,
+        admin_email as adminEmail,
+        admin_address as adminAddress,
+        remark as remark,
+        create_time as createTime,
+        update_time as updateTime,
+        create_user as createUser,
+        update_user as updateUser,
+        status as status,
+        free as free
+        FROM car_admin
+        WHERE status = "1" AND admin_account = #{adminAccount}
+    </select>
+</mapper>

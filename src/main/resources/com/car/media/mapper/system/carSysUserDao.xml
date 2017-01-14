@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.media.car.dao.System.carSysUserDao">
+    <select id="login" resultType="CarSysUser">
+        SELECT
+        id as id,
+        user_account as userAccount,
+        user_name as userName,
+        user_password as userPassword,
+        dept_id as deptId,
+        user_real_name as userRealName,
+        user_phone as userPhone,
+        user_email as userEmail,
+        user_address as userAddress,
+        user_qq as userQq,
+        user_gender as userGender,
+        remark as remark,
+        date_format(create_time,'%Y-%m-%d %T') as createTime,
+        date_format(update_time,'%Y-%m-%d %T') as updateTime,
+        create_user as createUser,
+        update_user as updateUser,
+        status as status,
+        free as free,
+        is_sys as isSys
+        FROM car_sys_user
+        WHERE status = "1" AND user_account=#{userAccount}
+        AND user_password = #{userPassword}
+    </select>
+        <select id="getCarSysUser" resultType="CarSysUser">
+        SELECT
+        id as id,
+        user_account as userAccount,
+        user_name as userName,
+        user_password as userPassword,
+        dept_id as deptId,
+        user_real_name as userRealName,
+        user_phone as userPhone,
+        user_email as userEmail,
+        user_address as userAddress,
+        user_qq as userQq,
+        user_gender as userGender,
+        remark as remark,
+        date_format(create_time,'%Y-%m-%d %T') as createTime,
+        date_format(update_time,'%Y-%m-%d %T') as updateTime,
+        create_user as createUser,
+        update_user as updateUser,
+        status as status,
+        free as free,
+        is_sys as isSys
+        FROM car_sys_user
+        WHERE status = "1" and is_sys = "1"
+        <if test="userName != null and userName !=''">
+            AND user_name LIKE  CONCAT(CONCAT('%', #{userName}), '%')
+        </if>
+        <if test="userAccount != null and userAccount !=''">
+            AND user_account LIKE  CONCAT(CONCAT('%', #{userAccount}), '%')
+        </if>
+        <if test="deptId != null and deptId !=''">
+            AND dept_id = #{deptId}
+        </if>
+        <if test="userRealName != null and userRealName !=''">
+            AND user_real_name LIKE  CONCAT(CONCAT('%', #{userRealName}), '%')
+        </if>
+        <if test="'' != offset and offset != null and limit != '' and limit != null">
+            limit #{offset},#{limit}
+        </if>
+        ORDER BY id
+    </select>
+
+    <select id="getCarSysUserCount" resultType="int">
+        SELECT COUNT(*)
+        FROM car_sys_user
+        WHERE status = "1" AND is_sys = "1"
+        <if test="userName != null and userName !=''">
+            AND user_name LIKE  CONCAT(CONCAT('%', #{userName}), '%')
+        </if>
+        <if test="userAccount != null and userAccount !=''">
+            AND user_account LIKE  CONCAT(CONCAT('%', #{userAccount}), '%')
+        </if>
+        <if test="deptId != null and deptId !=''">
+            AND dept_id = #{deptId}
+        </if>
+        <if test="userRealName != null and userRealName !=''">
+            AND user_real_name LIKE  CONCAT(CONCAT('%', #{userRealName}), '%')
+        </if>
+    </select>
+
+    <select id="getCarSysUserById" resultType="CarSysUser">
+        SELECT
+        id as id,
+        user_account as userAccount,
+        user_name as userName,
+        user_password as userPassword,
+        dept_id as deptId,
+        user_real_name as userRealName,
+        user_phone as userPhone,
+        user_email as userEmail,
+        user_address as userAddress,
+        user_qq as userQq,
+        user_gender as userGender,
+        remark as remark,
+        date_format(create_time,'%Y-%m-%d %T') as createTime,
+        date_format(update_time,'%Y-%m-%d %T') as updateTime,
+        create_user as createUser,
+        update_user as updateUser,
+        status as status,
+        free as free,
+        is_sys as isSys
+        FROM car_sys_user
+        WHERE status = "1" AND id = #{id}
+    </select>
+
+    <update id="updateCarSysUser" parameterType="CarSysUser">
+        update car_sys_user
+        SET
+        update_time=#{updateTime},
+        update_user=#{updateUser}
+        <if test="userName != null and userName !=''">
+            , user_name = #{userName}
+        </if>
+        <if test="userPassword != null and userPassword !=''">
+            , user_password = #{userPassword}
+        </if>
+        <if test="userRealName != null and userRealName !=''">
+            , user_real_name = #{userRealName}
+        </if>
+        <if test="userPhone != null and userPhone !=''">
+            , user_phone = #{userPhone}
+        </if>
+        <if test="userEmail != null and userEmail !=''">
+            , user_email = #{userEmail}
+        </if>
+        <if test="userAddress != null and userAddress !=''">
+            , user_address = #{userAddress}
+        </if>
+        <if test="userQq != null and userQq !=''">
+            , user_qq = #{userQq}
+        </if>
+        <if test="free != null and free !=''">
+            , free = #{free}
+        </if>
+        <if test="isSys != null and isSys !=''">
+            , is_sys = #{isSys}
+        </if>
+        <if test="deptId != null and deptId !=''">
+            , dept_id = #{deptId}
+        </if>
+
+        WHERE id = #{id}
+    </update>
+
+    <update id="deleteCarSysUser">
+        UPDATE car_sys_user
+        SET status="0"
+        WHERE id=#{id}
+    </update>
+
+    <update id="freeCarSysUser">
+        UPDATE car_sys_user
+        SET
+        <if test="free != null and free !=''">
+            free = #{free}
+        </if>
+        WHERE id=#{id}
+    </update>
+
+    <insert id="insertCarSysUser" parameterType="CarSysUser" useGeneratedKeys="true" keyProperty="id">
+        insert into car_sys_user
+        (user_account,user_name,user_password,dept_id,user_real_name,user_phone,user_email,user_address,user_qq,user_gender,remark,create_time,update_time,create_user,update_user,status,free,is_sys)
+        VALUES
+        (#{userAccount},#{userName},#{userPassword},#{deptId},#{userRealName},#{userPhone},#{userEmail},#{userAddress},#{userQq},#{userGender},#{remark},#{createTime},#{updateTime},#{createUser},#{updateUser},#{status},#{free},#{isSys})
+    </insert>
+</mapper>

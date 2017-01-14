@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.media.car.dao.personalCenter.carArticleDao">
+        <select id="getCarArticle" resultType="CarArticle">
+        SELECT
+        ca.id as id,
+        article_title as articleTitle,
+        article_create_type as articleCreateType,
+        article_type as articleType,
+        user_id as userId,
+        article_content as articleContent,
+        article_enclosure as articleEnclosure,
+        send_status as sendStatus,
+        send_time as sendTime,
+        ca.remark as remark,
+        date_format(ca.create_time,'%Y-%m-%d %T') as createTime,
+        date_format(ca.update_time,'%Y-%m-%d %T') as updateTime,
+        ca.create_user as createUser,
+        ca.update_user as updateUser,
+        ca.status as status,
+        static_code as staticCode,
+        static_value as staticValue,
+        csu.user_name as userName
+        FROM car_article ca
+        JOIN car_static cs on ca.send_status = cs.static_code
+        JOIN car_sys_user csu ON ca.user_id = csu.id
+        WHERE ca.status = "1"
+        <if test="articleTitle != null and articleTitle !=''">
+            AND ca.article_title LIKE  CONCAT(CONCAT('%', #{articleTitle}), '%')
+        </if>
+        <if test="articleCreateType != null and articleCreateType !=''">
+            AND ca.article_create_type = #{articleCreateType}
+        </if>
+        <if test="articleType != null and articleType !=''">
+            AND ca.article_type = #{articleType}
+        </if>
+        <if test="userId != null and userId !=''">
+            AND ca.user_id = #{userId}
+        </if>
+        <if test="'' != offset and offset != null and limit != '' and limit != null">
+            limit #{offset},#{limit}
+        </if>
+        ORDER BY ca.create_time DESC
+    </select>
+
+    <select id="getCarArticleCount" resultType="int">
+        SELECT COUNT(*)
+        FROM car_article
+        WHERE status = "1"
+        <if test="articleTitle != null and articleTitle !=''">
+            AND article_title LIKE  CONCAT(CONCAT('%', #{articleTitle}), '%')
+        </if>
+        <if test="articleCreateType != null and articleCreateType !=''">
+            AND article_create_type = #{articleCreateType}
+        </if>
+        <if test="articleType != null and articleType !=''">
+            AND article_type = #{articleType}
+        </if>
+        <if test="userId != null and userId !=''">
+            AND user_id = #{userId}
+        </if>
+    </select>
+
+    <select id="getCarArticleClickCount" resultType="int">
+        SELECT count(*)
+        FROM car_article_click
+        WHERE article_id = #{articleId}
+    </select>
+
+    <select id="getCarArticleDiscussCount" resultType="int">
+        SELECT count(*)
+        from car_discuss
+        WHERE article_id = #{articleId}
+    </select>
+
+    <select id="getCarArticleById" resultType="CarArticle">
+        SELECT
+        ca.id as id,
+        article_title as articleTitle,
+        article_create_type as articleCreateType,
+        article_type as articleType,
+        user_id as userId,
+        article_content as articleContent,
+        article_enclosure as articleEnclosure,
+        send_status as sendStatus,
+        send_time as sendTime,
+        ca.remark as remark,
+        date_format(ca.create_time,'%Y-%m-%d %T') as createTime,
+        date_format(ca.update_time,'%Y-%m-%d %T') as updateTime,
+        ca.create_user as createUser,
+        ca.update_user as updateUser,
+        ca.status as status,
+        csu.user_name as userName
+        FROM car_article ca
+        JOIN car_sys_user csu ON ca.user_id = csu.id
+        WHERE ca.status = "1" AND ca.id = #{id}
+    </select>
+
+    <update id="updateCarArticle" parameterType="CarArticle">
+        update car_article
+        SET
+        update_time=#{updateTime},
+        update_user=#{updateUser}
+        <if test="articleTitle != null and articleTitle !=''">
+            , article_title = #{articleTitle}
+        </if>
+        <if test="articleCreateType != null and articleCreateType !=''">
+            , article_create_type = #{articleCreateType}
+        </if>
+        <if test="articleType != null and articleType !=''">
+            , article_type = #{articleType}
+        </if>
+        <if test="articleContent != null and articleContent !=''">
+            , article_content = #{articleContent}
+        </if>
+        <if test="articleEnclosure != null and articleEnclosure !=''">
+            , article_enclosure = #{articleEnclosure}
+        </if>
+        <if test="sendStatus != null and sendStatus !=''">
+            , send_status = #{sendStatus}
+        </if>
+        <if test="sendTime != null and sendTime !=''">
+            , send_time = #{sendTime}
+        </if>
+        WHERE id = #{id}
+    </update>
+
+    <update id="deleteCarArticle">
+        UPDATE car_article
+        SET status="0"
+        WHERE id=#{id}
+    </update>
+
+    <insert id="insertCarArticle" parameterType="CarArticle" useGeneratedKeys="true" keyProperty="id">
+        insert into car_article
+        (article_title,article_create_type,article_type,user_id,article_content,article_enclosure,send_status,send_time,remark,create_time,update_time,create_user,update_user,status)
+        VALUES
+        (#{articleTitle},#{articleCreateType},#{articleType},#{userId},#{articleContent},#{articleEnclosure},#{sendStatus},#{sendTime},#{remark},#{createTime},#{updateTime},#{createUser},#{updateUser},#{status})
+    </insert>
+
+    <insert id="insertCarArticleClick" parameterType="CarArticle" useGeneratedKeys="true" keyProperty="id">
+        insert into car_article_click
+        (article_id,user_id,click_time,remark,create_time,update_time,create_user,update_user,status)
+        VALUES
+        (#{articleId},#{userId},#{clickTime},#{remark},#{createTime},#{updateTime},#{createUser},#{updateUser},#{status})
+    </insert>
+</mapper>

@@ -1,0 +1,101 @@
+.operate div{
+    float: left;
+}
+.add_left{
+    position: absolute;
+    margin-left: 85%;
+}
+.border{
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+}
+.border td{
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+}
+.no_border{
+    border: 0;
+}
+.search_input{
+    margin-left: 10px;
+    padding-left: 10px;
+    height: 35px;
+}
+.search_btn{
+    margin-left: 20px;
+    background: #659e08;
+}
+.btn{
+    width: 80px;
+}
+.add_btn{
+    background: #ef2735;
+}
+tr{
+    width: 100%;
+}
+tr td{
+    /*width: 20%;*/
+    width: auto;
+    padding: 0 5px;
+}
+.paragraphBox{
+    margin-top: 30px;
+}
+.Pageinput{
+    width: 80px;
+    height: 34px;
+    margin: 0 5px;
+    text-align: center;
+}
+.gofont{
+    font-size: 15px;
+    margin-right: 5px;
+}
+.btn-success{
+    margin: 0 5px;
+}
+span{
+    text-align: center;
+    /*margin: 25px 0;*/
+    font-size: 15px;
+}
+.add{
+    width: 100%;
+    padding: 0 15px;
+    height: 320px;
+    overflow-y: auto;
+}
+.add_box{
+    position: relative;
+    border-radius: 3px;
+    background: #ffffff;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 90%;
+}
+.width1{
+    width: 20%;
+}
+.addTable{
+    width: 96%;
+    padding: 10px 20px;
+    height: 60%;
+    margin: 1% 2%;
+}
+.title_tab{
+    margin: 0 2%;
+}
+.title_tab p{
+    padding-top: 10px;
+}
+.btn_blue{
+    background: #00b3ee;
+}
+.btn_blue:hover,.btn_gray:hover{
+    background: #00acd6;
+}
+.btn_middle{
+    width: 200px;
+    margin: auto;
+}

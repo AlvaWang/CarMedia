@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--配置别名
+       typeAliases和environments是平等级别的标签
+           type是实体类的完整类名
+           alias是类的别名
+       -->
+    <typeAliases>
+        <typeAlias type="com.media.car.entity.user.CarAdmin" alias="CarAdmin"/>
+        <typeAlias type="com.media.car.entity.System.CarDept" alias="CarDept"/>
+        <typeAlias type="com.media.car.entity.System.CarSysUser" alias="CarSysUser"/>
+        <typeAlias type="com.media.car.entity.personalCenter.CarArticle" alias="CarArticle"/>
+        <typeAlias type="com.media.car.entity.personalCenter.CarDiscussAndReply" alias="CarDiscussAndReply"/>
+    </typeAliases>
+
+    <mappers>
+        <!-- 映射Dao文件的位置 -->
+        <mapper resource="com/car/media/mapper/user/carAdminDao.xml"/>
+        <mapper resource="com/car/media/mapper/system/carDeptDao.xml"/>
+        <mapper resource="com/car/media/mapper/system/carSysUserDao.xml"/>
+        <mapper resource="com/car/media/mapper/personalCenter/carArticleDao.xml"/>
+        <mapper resource="com/car/media/mapper/personalCenter/carDiscussAndReplyDao.xml"/>
+    </mappers>
+
+</configuration>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.media.car.dao.System.carDeptDao">
+    <select id="getCarDept" resultType="CarDept">
+        SELECT
+        id as id,
+        dept_name as deptName,
+        dept_desc as deptDesc,
+        dept_id as deptId,
+        remark as remark,
+        date_format(create_time,'%Y-%m-%d %T') as createTime,
+        date_format(update_time,'%Y-%m-%d %T') as updateTime,
+        create_user as createUser,
+        update_user as updateUser,
+        status as status
+        FROM car_dept
+        WHERE status = "1"
+        <if test="deptName != null and deptName !=''">
+            AND dept_name LIKE  CONCAT(CONCAT('%', #{deptName}), '%')
+        </if>
+        <if test="'' != offset and offset != null and limit != '' and limit != null">
+            limit #{offset},#{limit}
+        </if>
+        ORDER BY id
+    </select>
+
+    <select id="getCarDeptCount" resultType="int">
+        SELECT COUNT(*)
+        FROM car_dept
+        WHERE status = "1"
+        <if test="deptName != null and deptName !=''">
+            AND dept_name LIKE  CONCAT(CONCAT('%', #{deptName}), '%')
+        </if>
+    </select>
+
+    <select id="getCarDeptById" resultType="CarDept">
+        SELECT
+        id as id,
+        dept_name as deptName,
+        dept_desc as deptDesc,
+        dept_id as deptId,
+        remark as remark,
+        date_format(create_time,'%Y-%m-%d %T') as createTime,
+        date_format(update_time,'%Y-%m-%d %T') as updateTime,
+        create_user as createUser,
+        update_user as updateUser,
+        status as status
+        FROM car_dept
+        WHERE status = "1" AND id = #{id}
+    </select>
+
+    <update id="updateCarDept" parameterType="CarDept">
+        update car_dept
+        SET
+        update_time=#{updateTime},
+        update_user=#{updateUser}
+        <if test="deptName != null and deptName !=''">
+            , dept_name = #{deptName}
+        </if>
+        <if test="deptDesc != null and deptDesc !=''">
+            , dept_desc = #{deptDesc}
+        </if>
+        <if test="deptId != null and deptId !=''">
+            , deptId = #{deptId}
+        </if>
+        WHERE id = #{id}
+    </update>
+
+    <update id="deleteCarDept">
+        UPDATE car_dept
+        SET status="0"
+        WHERE id=#{id}
+    </update>
+
+    <insert id="insertCarDept" parameterType="CarDept" useGeneratedKeys="true" keyProperty="id">
+        insert into car_dept
+        (dept_name,dept_desc,dept_id,remark,create_time,update_time,create_user,update_user,status)
+        VALUES
+        (#{deptName},#{deptDesc},#{deptId},#{remark},#{createTime},#{updateTime},#{createUser},#{updateUser},#{status})
+    </insert>
+</mapper>

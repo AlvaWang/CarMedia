@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.media.car.dao.personalCenter.carDiscussAndReplyDao">
+
+    <select id="getCarDiscussById" resultType="CarDiscussAndReply">
+        SELECT
+        cd.id as id,
+        article_id as articleId,
+        discuss_content as discussContent,
+        discuss_thumbs_number as discussThumbsNumber,
+        user_id as userId,
+        cd.remark as remark,
+        date_format(cd.create_time,'%Y-%m-%d %T') as createTime,
+        date_format(cd.update_time,'%Y-%m-%d %T') as updateTime,
+        cd.create_user as createUser,
+        cd.update_user as updateUser,
+        cd.status as status,
+        user_name as userName
+        FROM car_discuss cd
+        JOIN car_sys_user csu ON cd.user_id = csu.id
+        WHERE cd.status = "1" AND cd.article_id = #{articleId}
+        ORDER by createTime DESC
+    </select>
+    <update id="deleteCarDiscuss">
+        UPDATE car_discuss
+        SET status="0"
+        WHERE id=#{id}
+    </update>
+
+    <insert id="insertCarDiscuss" parameterType="CarDiscussAndReply" useGeneratedKeys="true" keyProperty="id">
+        insert into car_discuss
+        (article_id,user_id,discuss_content,discuss_thumbs_number,remark,create_time,update_time,create_user,update_user,status)
+        VALUES
+        (#{articleId},#{userId},#{discussContent},#{discussThumbsNumber},#{remark},#{createTime},#{updateTime},#{createUser},#{updateUser},#{status})
+    </insert>
+
+    <select id="getCarReplyById" resultType="CarDiscussAndReply">
+    SELECT a.id as id,a.discussId as discussId,a.replyContent as replyContent,a.replyThumbsNumber as replyThumbsNumber,a.userId as userId,
+    a.remark as remark,a.createTime as createTime,a.updateTime as updateTime,
+    a.createUser as createUser,a.updateUser as updateUser,a.`status` as status,a.userName as userName,
+    a.replyUserId AS replyUserId,user_name as replyUserName
+   FROM
+   (
+   SELECT
+    cd.id as id,
+    discuss_id as discussId,
+    reply_content as replyContent,
+    reply_thumbs_number as replyThumbsNumber,
+    user_id as userId,
+    reply_user_id as replyUserId,
+    cd.remark as remark,
+    date_format(cd.create_time,'%Y-%m-%d %T') as createTime,
+    date_format(cd.update_time,'%Y-%m-%d %T') as updateTime,
+    cd.create_user as createUser,
+    cd.update_user as updateUser,
+    cd.status as status,
+    user_name as userName
+    FROM car_reply cd
+    JOIN car_sys_user csu ON cd.user_id = csu.id
+    WHERE cd.status = "1" AND cd.discuss_id = #{discussId})a
+    JOIN car_sys_user c on a.replyUserId = c.id
+    order by createTime
+  </select>
+
+    <update id="deleteCarReply">
+        UPDATE car_reply
+        SET status="0"
+        WHERE id=#{id}
+    </update>
+
+    <insert id="insertCarReply" parameterType="CarDiscussAndReply" useGeneratedKeys="true" keyProperty="id">
+        insert into car_reply
+        (discuss_id,user_id,reply_user_id,reply_content,reply_thumbs_number,remark,create_time,update_time,create_user,update_user,status)
+        VALUES
+        (#{discussId},#{userId},#{replyUserId},#{replyContent},#{replyThumbsNumber},#{remark},#{createTime},#{updateTime},#{createUser},#{updateUser},#{status})
+    </insert>
+
+</mapper>
