@@ -572,5 +572,9 @@
 </script>
 <!-- AdminLTE for demo purposes -->
 <script src="<%=contextPath%>/dist/js/demo.js"></script>
+<script src="<%=contextPath%>/resources/plugins/jQuery/jquery.params.js"></script>
+
+<script src="<%=contextPath%>/resources/common/js/header.js"></script>
+<script src="<%=contextPath%>/resources/common/js/leftMenu.js"></script>
 </body>
 </html>

@@ -31,6 +31,8 @@ public class CarArticle implements Serializable{
 
     private String userName;
 
+    private int articleClickCount;
+
     public Long getId(){
         return id;
     }
@@ -86,7 +88,7 @@ public class CarArticle implements Serializable{
     public Long getUserId(){
         return userId;
     }
-    public void setUserId(Long deptId){
+    public void setUserId(Long userId){
         this.userId = userId;
     }
 
@@ -129,6 +131,13 @@ public class CarArticle implements Serializable{
     }
     public void setUserName(String userName){
         this.userName = userName;
+    }
+
+    public int getArticleClickCount(){
+        return  articleClickCount;
+    }
+    public void setArticleClickCount(int userName){
+        this.articleClickCount = articleClickCount;
     }
 
 }

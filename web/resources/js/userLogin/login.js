@@ -26,7 +26,8 @@ var loginIndex = function (condition) {
       success : function(result) {
          if(result.success==true){
             if(result.data!=null){
-               window.location.href="personalCenter/myArticleManage"
+                var name = condition.userAccount;
+               window.location.href="system/articleManage?name="+name+"";
             }else {
                alert("登录失败，请检查原因")
                window.location.href="";

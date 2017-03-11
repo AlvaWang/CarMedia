@@ -35,4 +35,6 @@ public interface ISysUserService {
     int freeCarSysUserConditionById(Long id,String free);
 
     List<CarSysUser> login(String userAccount, String userPassword);
+
+    List<CarSysUser> getCarSysUserConditionByAccount(String userAccount);
 }

@@ -3,6 +3,7 @@ package com.media.car.service.service.personalCenter;
 import com.media.car.entity.personalCenter.CarArticle;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/1/11.
@@ -27,4 +28,6 @@ public interface ICarArticleService {
     int getArticleDiscussCount(Long articleId);
 
     String addCarArticleClick(Long articleId, Long userId, String clickTime);
+
+    List<CarArticle> getArticleClickOrder();
 }

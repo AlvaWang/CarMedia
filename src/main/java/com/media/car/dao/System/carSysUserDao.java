@@ -30,6 +30,7 @@ public interface carSysUserDao {
      * id
      */
     List<CarSysUser> getCarSysUserById(@Param("id") Long id);
+    List<CarSysUser> getCarSysUserByAccount(@Param("userAccount")String userAccount);
 
     /**
      *

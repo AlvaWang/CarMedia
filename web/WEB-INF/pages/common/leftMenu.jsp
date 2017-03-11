@@ -1,4 +1,4 @@
-<%--
+<%@ page import="static org.apache.taglibs.standard.functions.Functions.substringAfter" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2016/12/23
@@ -6,8 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
     String contextPath = request.getContextPath();
+    String account = request.getRequestURI();
+    String basePath = request.getParameter("name");
+
 %>
 <section class="sidebar">
     <!-- Sidebar user panel -->
@@ -16,7 +20,8 @@
             <img src="<%=contextPath%>/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-            <p>Alva Wang</p>
+            <p id="user_name">Alva Wang</p>
+            <p id="user_Account"></p>
             <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
         </div>
     </div>
@@ -34,7 +39,7 @@
     <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
-            <a href="<%=contextPath%>/login/carAdminMassage">
+            <a href="<%=contextPath%>/login/carAdminMassage?name=<%=basePath%>">
                 <%--<i class="fa fa-home"></i> <span>首页</span>--%>
                 <%--<span class="pull-right-container">--%>
             <%--</span>--%>
@@ -50,13 +55,13 @@
             </span>
             </a>
             <ul class="treeview-menu">
-                <li><a href="<%=contextPath%>/system/articleManage"><i class="fa fa-circle-o"></i> 文章管理</a></li>
-                <li><a href="<%=contextPath%>/system/userManage"><i class="fa fa-circle-o"></i> 用户管理</a></li>
-                <li><a href="<%=contextPath%>/system/orgManage"><i class="fa fa-circle-o"></i> 组织管理</a></li>
-                <%--<li><a href="<%=contextPath%>/system/notificationManage"><i class="fa fa-circle-o"></i> 通知管理</a></li>--%>
-                <%--<li><a href="<%=contextPath%>/system/guessCompetitionManage"><i class="fa fa-circle-o"></i> 竞猜管理</a></li>--%>
+                <li><a href="<%=contextPath%>/system/articleManage?name=<%=basePath%>"><i class="fa fa-circle-o"></i> 文章管理</a></li>
+                <li><a href="<%=contextPath%>/system/userManage?name=<%=basePath%>"><i class="fa fa-circle-o"></i> 用户管理</a></li>
+                <li><a href="<%=contextPath%>/system/orgManage?name=<%=basePath%>"><i class="fa fa-circle-o"></i> 组织管理</a></li>
+                <li><a href="<%=contextPath%>/system/notificationManage?name=<%=basePath%>"><i class="fa fa-circle-o"></i> 通知管理</a></li>
             </ul>
         </li>
+
         <%--个人管理--%>
         <li class="treeview">
             <a href="#">
@@ -67,10 +72,10 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-                <li><a href="<%=contextPath%>/personalCenter/personalProfileManage"><i class="fa fa-circle-o"></i> 个人中心</a></li>
-                <li><a href="<%=contextPath%>/personalCenter/myArticleManage"><i class="fa fa-circle-o"></i> 我的文章</a></li>
-                <%--<li><a href="<%=contextPath%>/personalCenter/guessingCompetition"><i class="fa fa-circle-o"></i> 竞猜</a></li>--%>
-                <%--<li><a href="<%=contextPath%>/personalCenter/mailbox/noticeManage"><i class="fa fa-circle-o"></i> 通知</a></li>--%>
+                <li><a href="<%=contextPath%>/personalCenter/personalProfileManage?name=<%=basePath%>"><i class="fa fa-circle-o"></i> 个人中心</a></li>
+                <li><a href="<%=contextPath%>/personalCenter/myArticleManage?name=<%=basePath%>"><i class="fa fa-circle-o"></i> 我的文章</a></li>
+                <li><a href="<%=contextPath%>/personalCenter/guessingCompetition?name=<%=basePath%>"><i class="fa fa-circle-o"></i> 竞猜</a></li>
+                <li><a href="<%=contextPath%>/personalCenter/mailbox/noticeManage?name=<%=basePath%>"><i class="fa fa-circle-o"></i> 通知</a></li>
             </ul>
         </li>
         <%--邮箱--%>
@@ -84,6 +89,30 @@
             <%--</span>--%>
             <%--</a>--%>
         <%--</li>--%>
+        <li>
+            <a href="<%=contextPath%>/system/guessCompetitionManage?name=<%=basePath%>">
+                <i class="fa fa-dashboard"></i> <span>资讯快推</span>
+                <span class="pull-right-container">
+                    <%--<li><a href="<%=contextPath%>/system/guessCompetitionManage"><i class="fa fa-circle-o"></i> </a></li>--%>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="<%=contextPath%>/system/guessCompetitionManage?name=<%=basePath%>">
+                <i class="fa fa-gamepad"></i> <span>竞猜管理</span>
+                <span class="pull-right-container">
+        <%--<li><a href="<%=contextPath%>/system/guessCompetitionManage"><i class="fa fa-circle-o"></i> </a></li>--%>
+            </span>
+            </a>
+        </li>
+        <li>
+            <a href="<%=contextPath%>/system/guessCompetitionManage?name=<%=basePath%>">
+                <i class="fa fa-bar-chart-o"></i> <span>投票管理</span>
+                <span class="pull-right-container">
+                    <%--<li><a href="<%=contextPath%>/system/guessCompetitionManage"><i class="fa fa-circle-o"></i> </a></li>--%>
+                </span>
+            </a>
+        </li>
 
         <%--layout options布局--%>
         <%--<li class="treeview">--%>
@@ -110,21 +139,21 @@
             <%--</a>--%>
         <%--</li>--%>
         <%--图表--%>
-        <%--<li class="treeview">--%>
-            <%--<a href="#">--%>
-                <%--<i class="fa fa-pie-chart"></i>--%>
-                <%--<span>Charts</span>--%>
-                <%--<span class="pull-right-container">--%>
-              <%--<i class="fa fa-angle-left pull-right"></i>--%>
-            <%--</span>--%>
-            <%--</a>--%>
-            <%--<ul class="treeview-menu">--%>
-                <%--<li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>--%>
-                <%--<li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>--%>
-                <%--<li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>--%>
-                <%--<li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>--%>
-            <%--</ul>--%>
-        <%--</li>--%>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-pie-chart"></i>
+                <span>数据展示中心</span>
+                <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="<%=contextPath%>/personalCenter/data/userCharts?name=<%=basePath%>"><i class="fa fa-circle-o"></i> 统计分析</a></li>
+                <li><a href="<%=contextPath%>/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
+                <li><a href="<%=contextPath%>/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
+                <li><a href="<%=contextPath%>/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+            </ul>
+        </li>
         <%--UI样式--%>
         <%--<li class="treeview">--%>
             <%--<a href="#">--%>

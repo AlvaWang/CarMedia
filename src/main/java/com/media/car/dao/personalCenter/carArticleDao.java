@@ -4,6 +4,7 @@ import com.media.car.entity.personalCenter.CarArticle;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016/12/29.
@@ -57,4 +58,6 @@ public interface carArticleDao {
     int getCarArticleClickCount(@Param("articleId") Long articleId);
 
     int getCarArticleDiscussCount(@Param("articleId")Long articleId);
+
+    List<CarArticle> getCarArticleClickOrder();
 }

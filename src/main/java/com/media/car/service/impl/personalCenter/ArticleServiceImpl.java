@@ -10,6 +10,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/1/11.
@@ -61,7 +62,7 @@ public class ArticleServiceImpl implements ICarArticleService {
         carArticle.setStatus("1");
         carArticle.setCreateTime(timeF.format(new Date()));
         carArticle.setSendTime(timeF.format(new Date()));
-        carArticle.setUserId(userId);
+        carArticle.setUserId((long) 1);
         carArticle.setArticleTitle(articleTitle);
         carArticle.setArticleCreateType(articleCreateType);
         carArticle.setArticleType(articleType);
@@ -105,6 +106,11 @@ public class ArticleServiceImpl implements ICarArticleService {
             return String.valueOf(carArticle.getId());
         }
         return "";
+    }
+
+    public List<CarArticle> getArticleClickOrder(){
+        List<CarArticle> list = carArticleDao.getCarArticleClickOrder();
+        return list;
     }
 
 }

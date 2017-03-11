@@ -432,6 +432,7 @@
 
 <!-- jQuery 2.2.3 -->
 <script src="<%=contextPath%>/resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="<%=contextPath%>/resources/plugins/jQuery/jquery.params.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -467,5 +468,8 @@
 <script src="<%=contextPath%>/resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<%=contextPath%>/resources/dist/js/demo.js"></script>
+
+<script src="<%=contextPath%>/resources/common/js/header.js"></script>
+<script src="<%=contextPath%>/resources/common/js/leftMenu.js"></script>
 </body>
 </html>

@@ -93,4 +93,9 @@ public class SysUserServiceImpl implements ISysUserService{
         List<CarSysUser> list = carSysUserDao.login(userAccount,userPassword);
         return list;
     }
+
+    public  List<CarSysUser> getCarSysUserConditionByAccount(String userAccount){
+        List<CarSysUser> list = carSysUserDao.getCarSysUserByAccount(userAccount);
+        return list;
+    }
 }

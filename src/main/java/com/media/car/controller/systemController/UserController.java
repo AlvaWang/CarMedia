@@ -100,6 +100,40 @@ public class UserController {
     }
 
     /**
+     * 根据userAccount获取用户信息
+     * @param userAccount
+     * @return
+     */
+    @RequestMapping(value = "getSysUserByAccount",produces = "text/html;charset=UTF-8;")
+    public @ResponseBody String getSysUserByAccount(@RequestParam String userAccount){
+
+        LOG.info("invoke----------/org/getSysUserByAccount");
+        LOG.info("传入参数:"+userAccount);
+        String result="";
+        BaseResult baseResult=null;
+        try {
+            if(userAccount!=null){
+                List<CarSysUser> carSysUsers = sysUserService.getCarSysUserConditionByAccount(userAccount);
+                if ( carSysUsers != null) {
+                    baseResult = new BaseResult(true, "");
+                    baseResult.setData(carSysUsers);
+                } else {
+                    baseResult = new BaseResult(true, "根据ID没有查询到用户信息！");
+                }
+
+            }else{
+                baseResult=new BaseResult(true,"传入的参数不对");
+            }
+
+            result = JSON.toJSONString(baseResult);
+        }catch (Exception e){
+//            LOG.error("根据ID查询档案信息异常！", e);
+            baseResult=new BaseResult(false,"根据ID查询用户信息异常！");
+            result = JSON.toJSONString(baseResult);
+        }
+        return result;
+    }
+    /**
      * 修改用户信息
      * @param id
      * @return

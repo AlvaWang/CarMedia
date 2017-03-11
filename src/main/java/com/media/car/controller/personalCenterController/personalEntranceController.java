@@ -62,4 +62,12 @@ public class personalEntranceController {
     public String goToNotice(){
         return "mailbox/noticeManage";
     }
+
+    /**
+     * 数据中心
+     */
+    @RequestMapping("/data/userCharts")
+    public String goToUserCharts(){
+        return "charts/userCharts";
+    }
 }

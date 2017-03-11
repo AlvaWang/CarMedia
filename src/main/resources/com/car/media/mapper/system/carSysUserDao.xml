@@ -25,6 +25,7 @@
         FROM car_sys_user
         WHERE status = "1" AND user_account=#{userAccount}
         AND user_password = #{userPassword}
+        and is_sys = "1"
     </select>
         <select id="getCarSysUser" resultType="CarSysUser">
         SELECT
@@ -109,6 +110,32 @@
         FROM car_sys_user
         WHERE status = "1" AND id = #{id}
     </select>
+
+    <select id="getCarSysUserByAccount" resultType="CarSysUser">
+        SELECT
+        id as id,
+        user_account as userAccount,
+        user_name as userName,
+        user_password as userPassword,
+        dept_id as deptId,
+        user_real_name as userRealName,
+        user_phone as userPhone,
+        user_email as userEmail,
+        user_address as userAddress,
+        user_qq as userQq,
+        user_gender as userGender,
+        remark as remark,
+        date_format(create_time,'%Y-%m-%d %T') as createTime,
+        date_format(update_time,'%Y-%m-%d %T') as updateTime,
+        create_user as createUser,
+        update_user as updateUser,
+        status as status,
+        free as free,
+        is_sys as isSys
+        FROM car_sys_user
+        WHERE status = "1" AND user_account = #{userAccount}
+    </select>
+
 
     <update id="updateCarSysUser" parameterType="CarSysUser">
         update car_sys_user

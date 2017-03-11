@@ -213,6 +213,7 @@ function getCarDeptById(id,choose,carId) {
 }
 
 function getCarSysUserById(id) {
+    alert(id)
     $.ajax({
         url : "../sysUser/getSysUserById",
         type : "post",

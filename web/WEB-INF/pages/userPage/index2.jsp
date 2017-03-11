@@ -1066,6 +1066,7 @@
 
 <!-- jQuery 2.2.3 -->
 <script src="<%=contextPath%>/resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="<%=contextPath%>/resources/plugins/jQuery/jquery.params.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="<%=contextPath%>/resources/bootstrap/js/bootstrap.min.js"></script>
 <!-- FastClick -->
@@ -1085,5 +1086,8 @@
 <script src="<%=contextPath%>/resources/dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<%=contextPath%>/resources/dist/js/demo.js"></script>
+
+<script src="<%=contextPath%>/resources/common/js/header.js"></script>
+<script src="<%=contextPath%>/resources/common/js/leftMenu.js"></script>
 </body>
 </html>

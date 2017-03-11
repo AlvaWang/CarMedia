@@ -5,8 +5,10 @@ import com.media.car.controller.dto.BaseResult;
 import com.media.car.controller.dto.BootStrapTableResult;
 import com.media.car.entity.personalCenter.CarArticle;
 import com.media.car.entity.personalCenter.CarDiscussAndReply;
+import com.media.car.service.impl.System.OrgServiceImpl;
 import com.media.car.service.service.personalCenter.ICarArticleService;
 import com.media.car.service.service.personalCenter.ICarDiscussAndReplyService;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import static jdk.nashorn.internal.codegen.Compiler.LOG;
 
@@ -83,6 +86,28 @@ public class articleController {
             baseResult.setData(sum);
             result = JSON.toJSONString(baseResult);
 
+        } catch (Exception e) {
+            baseResult = new BaseResult(false, "查询到的数据信息异常！");
+            result = JSON.toJSONString(baseResult);
+        }
+        return result;
+    }
+
+    /**
+     * 获取浏览量排名靠前前十位
+     */
+    @RequestMapping(value = "/getArticleClickOrder",produces = "text/html;charset=UTF-8;")
+    public @ResponseBody String getArticleClickOrder() {
+        String result = "";
+        BaseResult baseResult = null;
+        try {
+                List<CarArticle> list = carArticleService.getArticleClickOrder();
+                if (list != null && list.size() > 0) {
+                    BootStrapTableResult tableResult = new BootStrapTableResult<CarArticle>(list);
+                    baseResult = new BaseResult(true, "");
+                    baseResult.setData(tableResult);
+                    result = JSON.toJSONString(baseResult);
+                }
         } catch (Exception e) {
             baseResult = new BaseResult(false, "查询到的数据信息异常！");
             result = JSON.toJSONString(baseResult);

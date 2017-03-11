@@ -58,19 +58,19 @@
                         <div class="box-body box-profile">
                             <img class="profile-user-img img-responsive img-circle" src="<%=contextPath%>/resources/dist/img/user4-128x128.jpg" alt="User profile picture">
 
-                            <h3 class="profile-username text-center">Nina Mcintire</h3>
+                            <h3 class="profile-username text-center" id="account_name">王潘</h3>
 
-                            <p class="text-muted text-center">Software Engineer</p>
+                            <p class="text-muted text-center" id="account_email">252782825@qq.com</p>
 
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
-                                    <b>Followers</b> <a class="pull-right">1,322</a>
+                                    <b>文章</b> <a class="pull-right" id="article_click">浏览量</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Following</b> <a class="pull-right">543</a>
+                                    <b>原创</b> <a class="pull-right" id="original_num">数量</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Friends</b> <a class="pull-right">13,287</a>
+                                    <b>转载</b> <a class="pull-right" id="turn_num">数量</a>
                                 </li>
                             </ul>
 
@@ -123,56 +123,57 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-md-9">
-                    <h1>Setting</h1>
+                    <h1>设置（注：*号项为不可修改项）</h1>
                     <div>
                         <form class="form-horizontal">
                             <div class="form-group">
-                                <label for="inputName" class="col-sm-2 control-label">Name</label>
+                                <label for="inputName" class="col-sm-2 control-label" id="user_name">昵称</label>
 
                                 <div class="col-sm-10">
                                     <input type="email" class="form-control" id="inputName" placeholder="Name">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                                <label for="inputEmail" class="col-sm-2 control-label" id="user_email">邮箱（*）</label>
 
                                 <div class="col-sm-10">
                                     <input type="email" class="form-control" id="inputEmail" placeholder="Email">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputName" class="col-sm-2 control-label">Name</label>
+                                <label for="inputName" class="col-sm-2 control-label" id="real_name">姓名</label>
 
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="input_name" placeholder="Name">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+                                <label for="inputSkills" class="col-sm-2 control-label" id="dept_name">职位（*）</label>
 
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                    <input type="text" class="form-control" id="inputSkills" placeholder="职位（*）">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+                                <label for="inputExperience" class="col-sm-2 control-label" id="dept_describe">管理权限</label>
 
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                                    <textarea class="form-control" id="inputExperience" placeholder="管理权限"></textarea>
                                 </div>
                             </div>
+
+                            <%--<div class="form-group">--%>
+                                <%--<div class="col-sm-offset-2 col-sm-10">--%>
+                                    <%--<div class="checkbox">--%>
+                                        <%--<label>--%>
+                                            <%--<input type="checkbox"> I agree to the <a href="#">terms and conditions</a>--%>
+                                        <%--</label>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-danger">Submit</button>
+                                    <button type="button" class="btn btn-danger" id="personal_submit">提交</button>
                                 </div>
                             </div>
                         </form>
@@ -483,6 +484,7 @@
 
 <!-- jQuery 2.2.3 -->
 <script src="<%=contextPath%>/resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="<%=contextPath%>/resources/plugins/jQuery/jquery.params.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="<%=contextPath%>/resources/bootstrap/js/bootstrap.min.js"></script>
 <!-- FastClick -->
@@ -491,5 +493,8 @@
 <script src="<%=contextPath%>/resources/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<%=contextPath%>/resources/dist/js/demo.js"></script>
+<script src="<%=contextPath%>/resources/common/js/header.js"></script>
+<script src="<%=contextPath%>/resources/common/js/leftMenu.js"></script>
+<script src="<%=contextPath%>/resources/js/personalCenter/personalProfile.js"></script>
 </body>
 </html>

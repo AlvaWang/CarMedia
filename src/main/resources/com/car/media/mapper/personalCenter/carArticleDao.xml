@@ -67,6 +67,38 @@
         WHERE article_id = #{articleId}
     </select>
 
+    <select id="getCarArticleClickOrder" resultType="java.util.HashMap">
+            SELECT b.id as id,b.articleClickCount as articleClickCount,b.articleTitle as articleTitle,
+            b.articleCreateType as articleCreateType,b.articleType as articleType,
+            user_name as userName
+            FROM
+            (
+            SELECT
+            a.articleId as id,
+            a.articleClickCount as articleClickCount,
+            article_title as articleTitle,
+            user_id as userId,
+            article_create_type as articleCreateType,
+            article_type as articleType
+            FROM(
+            SELECT article_id as articleId,COUNT(*) as articleClickCount
+                    from car_article_click
+                    GROUP BY article_id
+                    ) a
+            JOIN car_article ca on a.articleId = ca.id) b
+            JOIN car_sys_user csu on b.userId = csu.id
+            ORDER BY articleClickCount Desc
+            limit 0,10
+    </select>
+
+    <select id="getClickCountOrder" resultType="CarArticle">
+        SELECT COUNT(*) AS articleClickCount
+        FROM car_article_click
+        GROUP BY article_id
+        ORDER BY articleClickCount DESC
+        LIMIT 0,10
+    </select>
+
     <select id="getCarArticleDiscussCount" resultType="int">
         SELECT count(*)
         from car_discuss

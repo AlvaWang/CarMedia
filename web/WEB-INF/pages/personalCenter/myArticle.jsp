@@ -253,6 +253,7 @@ To change this template use File | Settings | File Templates.
 
 <!-- jQuery 2.2.3 -->
 <script src="<%=contextPath%>/resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="<%=contextPath%>/resources/plugins/jQuery/jquery.params.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="<%=contextPath%>/resources/bootstrap/js/bootstrap.min.js"></script>
 <!-- DataTables -->
@@ -270,6 +271,8 @@ To change this template use File | Settings | File Templates.
 <%--分页--%>
 <script src="<%=contextPath%>/resources/common/js/pagination.js"></script>
 <%--<script src="<%=contextPath%>/resources/js/systemManage/org_ztree.js"></script>--%>
+<script src="<%=contextPath%>/resources/common/js/header.js"></script>
+<script src="<%=contextPath%>/resources/common/js/leftMenu.js"></script>
 <script src="<%=contextPath%>/resources/js/personalCenter/myArticle.js"></script>
 <%--<script src="<%=contextPath%>/resources/js/personalCenter/articleAdd.js"></script>--%>
 <script type="text/javascript" src="<%=contextPath%>/resources/common/js/jquery.reveal.js"></script>
